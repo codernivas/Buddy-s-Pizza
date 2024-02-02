@@ -2,7 +2,6 @@ import Image from "next/image"
 import Right from "@/components/icons/Right"
 export default function Hero() {
   return (
-    <>
       <section className="grid grid-cols-2 mt-4">
         <div className="py-12">
           <h1 className="text-4xl font-semibold">
@@ -34,6 +33,5 @@ export default function Hero() {
           />
         </div>
       </section>
-    </>
   )
 }
