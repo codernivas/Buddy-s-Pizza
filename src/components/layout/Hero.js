@@ -28,8 +28,8 @@ export default function Hero() {
           <Image
             src={"/pizza.png"}
             alt={"pizza"}
-            layout={"fill"}
-            objectFit={"contain"}
+            fill           
+             objectFit={"contain"}
           />
         </div>
       </section>
