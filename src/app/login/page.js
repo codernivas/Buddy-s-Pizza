@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useState } from "react"
+import {signIn} from "next-auth/react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -10,15 +11,7 @@ export default function LoginPage() {
 
   async function handleFormSubmit(ev) {
     ev.preventDefault()
-    setLoginInProgress(true)
-    const { ok } = await fetch("api/login", {
-      body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-    })
-    if (ok) {
-    } else {
-    }
+    await signIn('credentials',{email, password})
     setLoginInProgress(false)
 
   }
@@ -29,6 +22,7 @@ export default function LoginPage() {
         <input
           type="email"
           placeholder="Email"
+          name="email"
           value={email}
           disabled={loginInProgress }
           onChange={(ev) => setEmail(ev.target.value)}
@@ -36,12 +30,13 @@ export default function LoginPage() {
         <input
           type="password"
           placeholder="Password"
+          name="password"
           value={password}
           disabled={loginInProgress}
           onChange={(ev) => setPassword(ev.target.value)}
         />
         <button type="submit" disabled={loginInProgress}>
-          Register
+          Login
         </button>
         <div className="my-4 text-center text-gray-500">
           or login with provider
